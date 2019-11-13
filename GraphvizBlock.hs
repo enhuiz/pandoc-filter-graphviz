@@ -20,7 +20,7 @@ graphvizBlock (Just format) (CodeBlock (id, classes, keyvals) content)
           Format "latex" ->
               do
                 (ec, out, err) <- readProcessWithExitCode
-                                  "dot2tex" ["--figonly", "--progoptions=-K" ++ layout] content
+                                  "dot2tex" ["-t", "raw", "--figonly", "--progoptions=-K" ++ layout] content
                 return $ if length err == 0
                          then RawBlock (Format "latex") out
                          else CodeBlock (id, classes, keyvals) err
